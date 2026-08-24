@@ -28,9 +28,7 @@ public class Alergia {
 
     @Override
     public String toString() {
-        return "Alergia{" +
-                "idAlergia=" + idAlergia +
-                ", nomeAlergia='" + nomeAlergia + '\'' +
-                '}';
+        return "id Alergia: " + getIdAlergia() +
+                "Nome Alergia: " + getNomeAlergia() + "\n";
     }
 }
