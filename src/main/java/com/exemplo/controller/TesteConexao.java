@@ -1,6 +1,4 @@
-package com.exemplo.dao;
-
-import com.exemplo.model.ConexaoBanco;
+package com.exemplo.controller;
 
 import java.sql.Connection;
 
