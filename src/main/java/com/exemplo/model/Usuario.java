@@ -1,5 +1,7 @@
 package com.exemplo.model;
 
+import java.time.LocalDate;
+
 public class Usuario {
 
     private int idUsuario;
@@ -7,12 +9,22 @@ public class Usuario {
     private String genero;
     private String email;
     private String senha;
-    private String dtNascimento;
-    private int telefone;
-    private String dtCadastro;
+    private LocalDate dtNascimento;
+    private long telefone;
+    private LocalDate dtCadastro;
 
-    public Usuario(int idUsuario, String nomeCompleto, String genero, String email, String senha, int telefone, String dtCadastro) {
+    public Usuario(int idUsuario, String nomeCompleto, String genero, String email, String senha, long telefone, LocalDate dtNascimento, LocalDate dtCadastro) {
         this.idUsuario = idUsuario;
+        this.nomeCompleto = nomeCompleto;
+        this.genero = genero;
+        this.email = email;
+        this.senha = senha;
+        this.dtNascimento = dtNascimento;
+        this.telefone = telefone;
+        this.dtCadastro = dtCadastro;
+    }
+
+    public Usuario(String nomeCompleto, String genero, String email, String senha, long telefone, LocalDate dtNascimento, LocalDate dtCadastro) {
         this.nomeCompleto = nomeCompleto;
         this.genero = genero;
         this.email = email;
@@ -62,27 +74,27 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public String getDtNascimento() {
+    public LocalDate getDtNascimento() {
         return dtNascimento;
     }
 
-    public void setDtNascimento(String dtNascimento) {
+    public void setDtNascimento(LocalDate dtNascimento) {
         this.dtNascimento = dtNascimento;
     }
 
-    public int getTelefone() {
+    public long getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(long telefone) {
         this.telefone = telefone;
     }
 
-    public String getDtCadastro() {
+    public LocalDate getDtCadastro() {
         return dtCadastro;
     }
 
-    public void setDtCadastro(String dtCadastro) {
+    public void setDtCadastro(LocalDate dtCadastro) {
         this.dtCadastro = dtCadastro;
     }
 
@@ -94,7 +106,6 @@ public class Usuario {
                 "Email: " + getEmail() + "\n" +
                 "Senha: " + getSenha() + "\n" +
                 "Data Nascimento: " + getDtNascimento() + "\n" +
-                "Telefone:" + getTelefone() + "\n" +
-                "Data Cadastro :" + getDtCadastro() + "\n";
+                "Data Cadastro: " + getDtCadastro() + "\n";
     }
 }

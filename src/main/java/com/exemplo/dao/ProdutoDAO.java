@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ProdutoDAO {
-
+/*
     public boolean cadastrarUsuario(Produto produto) throws SQLException {
         String sql = "insert into produto (nome, marca, categoria, descricao, eh_vegano, eh_cruelty_free, pontuacao, lista_ingredientes) values (?,?,?,?,?,?)";
 
@@ -115,4 +115,6 @@ public class ProdutoDAO {
 
         }
     }
+
+ */
 }

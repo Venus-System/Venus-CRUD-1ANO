@@ -2,6 +2,7 @@ package com.exemplo.dao;
 
 import com.exemplo.controller.ConexaoBanco;
 import com.exemplo.model.Usuario;
+import java.time.LocalDate;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 public class UsuarioDAO {
 
     public boolean cadastrarUsuario(Usuario usuario) throws SQLException{
-        String sql = "insert into usuario (nome_completo, genero, email, senha, dt_nascimento, telefone) values (?,?,?,?,?,?)";
+        String sql = "insert into usuario(nome_completo, genero, email,senha,telefone,  dt_nascimento ,dt_cadastro) values (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection cnn= new ConexaoBanco().conectar();
             PreparedStatement pstmt = cnn.prepareStatement(sql)){
@@ -20,9 +21,9 @@ public class UsuarioDAO {
             pstmt.setString(2, usuario.getGenero());
             pstmt.setString(3, usuario.getEmail());
             pstmt.setString(4, usuario.getSenha());
-            pstmt.setString(5, usuario.getDtNascimento());
-            pstmt.setInt(6,usuario.getTelefone());
-
+            pstmt.setLong(5,usuario.getTelefone());
+            pstmt.setObject(6, usuario.getDtNascimento());
+            pstmt.setObject(7, usuario.getDtCadastro());
             return pstmt.executeUpdate()>0;
             // o executeUpdate so vai retornar quantas linhas do banco foram alteradas, não retorna os dados inseridos.
         }
@@ -37,13 +38,14 @@ public class UsuarioDAO {
             ResultSet rset = pstmt.executeQuery()) {
                 while (rset.next()) {
                     Usuario user1 = new Usuario(
-                            rset.getInt("id_usuario as Id Usuario"),
-                            rset.getString("nome as Nome Completo"),
-                            rset.getString("senha as Senha"),
-                            rset.getString("email as Email"),
-                            rset.getString("dt_nascimento as Data Nascimento"),
-                            rset.getInt("telefone as Telefone"),
-                            rset.getString("dt_cadastro as Data Cadastro")
+                            rset.getInt("id_usuario"),
+                            rset.getString("nome_completo"),
+                            rset.getString("genero"),
+                            rset.getString("senha"),
+                            rset.getString("email"),
+                            rset.getLong("telefone"),
+                            rset.getObject("dt_nascimento", LocalDate.class),
+                            rset.getObject("dt_cadastro", LocalDate.class)
                     );
                     usuario.add(user1);
                 }
@@ -64,13 +66,14 @@ public class UsuarioDAO {
                 //que permite a visualização das tabelas
                 if(rset.next()){
                     usuario = new Usuario(
-                            rset.getInt("id_usuario as Id Usuario"),
-                            rset.getString("nome as Nome Completo"),
-                            rset.getString("senha as Senha"),
-                            rset.getString("email as Email"),
-                            rset.getString("dt_nascimento as Data Nascimento"),
-                            rset.getInt("telefone as Telefone"),
-                            rset.getString("dt_cadastro as Data Cadastro")
+                            rset.getInt("id_usuario"),
+                            rset.getString("nome_completo"),
+                            rset.getString("genero"),
+                            rset.getString("senha"),
+                            rset.getString("email"),
+                            rset.getLong("telefone"),
+                            rset.getObject("dt_nascimento", LocalDate.class),
+                            rset.getObject("dt_cadastro", LocalDate.class)
 
                             //retornará o usuario com o id que está sendo procurado.
                     );
@@ -80,7 +83,7 @@ public class UsuarioDAO {
         } return usuario;
     }
     public int alterarValores(Usuario usuario) throws SQLException {
-        String sql = "update usuario set nome_completo = ?, genero = ?, email = ?, senha = ?, dt_nascimento = ?, telefone = ?";
+        String sql = "update usuario set nome_completo = ?, genero = ?, email = ?, senha = ?, telefone = ?, dt_nascimento = ?";
         try (Connection cnn = new ConexaoBanco().conectar();
             PreparedStatement pstmt = cnn.prepareStatement(sql)){
 
@@ -88,8 +91,9 @@ public class UsuarioDAO {
             pstmt.setString(2, usuario.getGenero());
             pstmt.setString(3, usuario.getEmail());
             pstmt.setString(4, usuario.getSenha());
-            pstmt.setString(5, usuario.getDtNascimento());
-            pstmt.setInt(6,usuario.getTelefone());
+            pstmt.setLong(5,usuario.getTelefone());
+            pstmt.setObject(6, usuario.getDtNascimento());
+
 
             return pstmt.executeUpdate();
         }

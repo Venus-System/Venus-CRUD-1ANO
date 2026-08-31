@@ -7,28 +7,31 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class IngredientesDAO {
 
-    public boolean cadastrarUsuario(Usuario usuario) throws SQLException {
+    /*public boolean cadastrarIngrediente(Usuario usuario) throws SQLException {
         String sql = "insert into usuario (nome_completo, genero, email, senha, dt_nascimento, telefone) values (?,?,?,?,?,?)";
 
         try (Connection cnn= new ConexaoBanco().conectar();
              PreparedStatement pstmt = cnn.prepareStatement(sql)){
-            pstmt.setString(1,usuario.getNomeCompleto());
-            pstmt.setString(2, usuario.getGenero());
-            pstmt.setString(3, usuario.getEmail());
-            pstmt.setString(4, usuario.getSenha());
-            pstmt.setString(5, usuario.getDtNascimento());
-            pstmt.setInt(6,usuario.getTelefone());
-
-            return pstmt.executeUpdate()>0;
+                pstmt.setInt(1, usuario.getIdUsuario());
+                pstmt.setString(2,usuario.getNomeCompleto());
+                pstmt.setString(3, usuario.getGenero());
+                pstmt.setString(4, usuario.getEmail());
+                pstmt.setString(5, usuario.getSenha());
+                pstmt.setObject(6, usuario.getDtNascimento());
+                pstmt.setLong(7,usuario.getTelefone());
+                pstmt.setObject(8, usuario.getDtCadastro());
+                return pstmt.executeUpdate()>0;
             // o executeUpdate so vai retornar quantas linhas do banco foram alteradas, não retorna os dados inseridos.
         }
     }
 
-    public ArrayList<Usuario> read() throws SQLException {
+
+    /*public ArrayList<Usuario> read() throws SQLException {
         String sql = "select * from usuario order by id_usuario";
         ArrayList<Usuario> usuario = new ArrayList<>();
 
@@ -37,19 +40,22 @@ public class IngredientesDAO {
              ResultSet rset = pstmt.executeQuery()) {
             while (rset.next()) {
                 Usuario user1 = new Usuario(
-                        rset.getInt("id_usuario as Id Usuario"),
-                        rset.getString("nome as Nome Completo"),
-                        rset.getString("senha as Senha"),
-                        rset.getString("email as Email"),
-                        rset.getString("dt_nascimento as Data Nascimento"),
-                        rset.getInt("telefone as Telefone"),
-                        rset.getString("dt_cadastro as Data Cadastro")
+                        rset.getInt("id_usuario"),
+                        rset.getString("nome"),
+                        rset.getString("genero"),
+                        rset.getString("senha"),
+                        rset.getString("email"),
+                        rset.getInt("telefone"),
+                        rset.getObject("dt_nascimento", LocalDate.class),
+                        rset.getObject("dt_cadastro", LocalDate.class)
                 );
                 usuario.add(user1);
             }
         } return usuario;
 
     }
+
+
 
     public Usuario readById(int id) throws SQLException{
         String sql = "select * from usuario where id_usuario =?";
@@ -64,13 +70,14 @@ public class IngredientesDAO {
                 //que permite a visualização das tabelas
                 if(rset.next()){
                     usuario = new Usuario(
-                            rset.getInt("id_usuario as Id Usuario"),
-                            rset.getString("nome as Nome Completo"),
-                            rset.getString("senha as Senha"),
-                            rset.getString("email as Email"),
-                            rset.getString("dt_nascimento as Data Nascimento"),
-                            rset.getInt("telefone as Telefone"),
-                            rset.getString("dt_cadastro as Data Cadastro")
+                            rset.getInt("id_usuario"),
+                            rset.getString("nome"),
+                            rset.getString("genero"),
+                            rset.getString("senha"),
+                            rset.getString("email"),
+                            rset.getLong("telefone"),
+                            rset.getObject("dt_nascimento", LocalDate.class),
+                            rset.getObject("dt_cadastro", LocalDate.class)
 
                             //retornará o usuario com o id que está sendo procurado.
                     );
@@ -88,8 +95,8 @@ public class IngredientesDAO {
             pstmt.setString(2, usuario.getGenero());
             pstmt.setString(3, usuario.getEmail());
             pstmt.setString(4, usuario.getSenha());
-            pstmt.setString(5, usuario.getDtNascimento());
-            pstmt.setInt(6,usuario.getTelefone());
+            pstmt.setObject(5, usuario.getDtNascimento());
+            pstmt.setLong(6,usuario.getTelefone());
 
             return pstmt.executeUpdate();
         }
@@ -105,4 +112,6 @@ public class IngredientesDAO {
 
         }
     }
+
+     */
 }
