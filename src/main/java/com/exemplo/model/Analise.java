@@ -5,7 +5,6 @@ public class Analise {
     private int idAnalise;
     private String dtHrAnalise;
     private String resumoResultado;
-
     private int pontuacao;
     private int idUsuario;
 
