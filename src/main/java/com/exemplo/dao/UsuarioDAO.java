@@ -81,8 +81,8 @@ public class UsuarioDAO {
 
         } return usuario;
     }
-    public int alterarValores(Usuario usuario) throws SQLException {
-        String sql = "update usuario set nome_completo = ?, genero = ?, email = ?, senha = ?, telefone = ?, dt_nascimento = ?";
+    public int update (Usuario usuario) throws SQLException {
+        String sql = "update usuario set nome_completo = ?, genero = ?, email = ?, senha = ?, telefone = ?, dt_nascimento = ? where id_usuario = ? ";
         try (Connection cnn = new ConexaoBanco().conectar();
             PreparedStatement pstmt = cnn.prepareStatement(sql)){
 
@@ -92,6 +92,7 @@ public class UsuarioDAO {
             pstmt.setString(4, usuario.getSenha());
             pstmt.setString(5,usuario.getTelefone());
             pstmt.setObject(6, usuario.getDtNascimento());
+            pstmt.setInt(7, usuario.getIdUsuario());
 
 
             return pstmt.executeUpdate();

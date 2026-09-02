@@ -22,7 +22,7 @@ public class Main {
         */
         try{
 
-        Usuario usuario = new Usuario ("Janderson Martins", "Masculino", "jdhfhd" ,  "1234",551198976, LocalDate.of(2000,6,7), LocalDate.of(2026,8,27));
+        Usuario usuario = new Usuario ("Janderson Martins", "Masculino", "jdhfhd" ,  "1234","551198976", LocalDate.of(2000,6,7), LocalDate.of(2026,8,27));
         UsuarioDAO dao = new UsuarioDAO();
         System.out.println();
         dao.cadastrarUsuario(usuario);
