@@ -3,7 +3,6 @@ package com.exemplo.dao;
 import com.exemplo.controller.ConexaoBanco;
 import com.exemplo.model.Usuario;
 import java.time.LocalDate;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 public class UsuarioDAO {
 
     public boolean cadastrarUsuario(Usuario usuario) throws SQLException{
-        String sql = "insert into usuario(nome_completo, genero, email,senha,telefone,  dt_nascimento ,dt_cadastro) values (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into usuario(nome_completo, genero, email, senha ,telefone,  dt_nascimento ,dt_cadastro) values (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection cnn= new ConexaoBanco().conectar();
             PreparedStatement pstmt = cnn.prepareStatement(sql)){
@@ -21,7 +20,7 @@ public class UsuarioDAO {
             pstmt.setString(2, usuario.getGenero());
             pstmt.setString(3, usuario.getEmail());
             pstmt.setString(4, usuario.getSenha());
-            pstmt.setLong(5,usuario.getTelefone());
+            pstmt.setString(5,usuario.getTelefone());
             pstmt.setObject(6, usuario.getDtNascimento());
             pstmt.setObject(7, usuario.getDtCadastro());
             return pstmt.executeUpdate()>0;
@@ -41,9 +40,9 @@ public class UsuarioDAO {
                             rset.getInt("id_usuario"),
                             rset.getString("nome_completo"),
                             rset.getString("genero"),
-                            rset.getString("senha"),
                             rset.getString("email"),
-                            rset.getLong("telefone"),
+                            rset.getString("senha"),
+                            rset.getString("telefone"),
                             rset.getObject("dt_nascimento", LocalDate.class),
                             rset.getObject("dt_cadastro", LocalDate.class)
                     );
@@ -69,9 +68,9 @@ public class UsuarioDAO {
                             rset.getInt("id_usuario"),
                             rset.getString("nome_completo"),
                             rset.getString("genero"),
-                            rset.getString("senha"),
                             rset.getString("email"),
-                            rset.getLong("telefone"),
+                            rset.getString("senha"),
+                            rset.getString("telefone"),
                             rset.getObject("dt_nascimento", LocalDate.class),
                             rset.getObject("dt_cadastro", LocalDate.class)
 
@@ -91,7 +90,7 @@ public class UsuarioDAO {
             pstmt.setString(2, usuario.getGenero());
             pstmt.setString(3, usuario.getEmail());
             pstmt.setString(4, usuario.getSenha());
-            pstmt.setLong(5,usuario.getTelefone());
+            pstmt.setString(5,usuario.getTelefone());
             pstmt.setObject(6, usuario.getDtNascimento());
 
 

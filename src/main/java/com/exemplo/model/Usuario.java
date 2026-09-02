@@ -1,4 +1,4 @@
-package com.exemplo.model;
+package com.exemplo.model;/
 
 import java.time.LocalDate;
 
@@ -10,10 +10,10 @@ public class Usuario {
     private String email;
     private String senha;
     private LocalDate dtNascimento;
-    private long telefone;
+    private String telefone;
     private LocalDate dtCadastro;
 
-    public Usuario(int idUsuario, String nomeCompleto, String genero, String email, String senha, long telefone, LocalDate dtNascimento, LocalDate dtCadastro) {
+    public Usuario(int idUsuario, String nomeCompleto, String genero, String email, String senha, String telefone, LocalDate dtNascimento, LocalDate dtCadastro) {
         this.idUsuario = idUsuario;
         this.nomeCompleto = nomeCompleto;
         this.genero = genero;
@@ -24,7 +24,7 @@ public class Usuario {
         this.dtCadastro = dtCadastro;
     }
 
-    public Usuario(String nomeCompleto, String genero, String email, String senha, long telefone, LocalDate dtNascimento, LocalDate dtCadastro) {
+    public Usuario(String nomeCompleto, String genero, String email, String senha, String telefone, LocalDate dtNascimento, LocalDate dtCadastro) {
         this.nomeCompleto = nomeCompleto;
         this.genero = genero;
         this.email = email;
@@ -82,11 +82,11 @@ public class Usuario {
         this.dtNascimento = dtNascimento;
     }
 
-    public long getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(long telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
