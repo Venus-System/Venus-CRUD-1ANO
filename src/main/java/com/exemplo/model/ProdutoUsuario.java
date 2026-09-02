@@ -1,3 +1,4 @@
+/*
 package com.exemplo.model;
 
 public class ProdutoUsuario {
@@ -43,3 +44,4 @@ public class ProdutoUsuario {
                 "Id Usuário: " + getIdUsuario() + "\n";
     }
 }
+*/
