@@ -1,4 +1,6 @@
-package com.exemplo.model;/
+package com.exemplo.model;
+
+
 
 public class UsuarioAlergia {
 

@@ -82,7 +82,7 @@ public class UsuarioDAO {
         } return usuario;
     }
     public int alterarValores(Usuario usuario) throws SQLException {
-        String sql = "update usuario set nome_completo = ?, genero = ?, email = ?, senha = ?, telefone = ?, dt_nascimento = ?";
+        String sql = "update usuario set nome_completo = ?, genero = ?, email = ?, senha = ?, telefone = ?, dt_nascimento = ?, dt_nascimento = ?";
         try (Connection cnn = new ConexaoBanco().conectar();
             PreparedStatement pstmt = cnn.prepareStatement(sql)){
 
@@ -92,7 +92,7 @@ public class UsuarioDAO {
             pstmt.setString(4, usuario.getSenha());
             pstmt.setString(5,usuario.getTelefone());
             pstmt.setObject(6, usuario.getDtNascimento());
-
+            pstmt.setObject(6, usuario.getDtNascimento());
 
             return pstmt.executeUpdate();
         }
@@ -107,6 +107,25 @@ public class UsuarioDAO {
             return pstmt.executeUpdate();
 
         }
+    }
+
+    public boolean existeEmail(String email) throws SQLException {
+        Connection conexao = new ConexaoBanco().conectar();
+
+        String sql = "SELECT 1 FROM usuario WHERE email = ?";
+        PreparedStatement comando = conexao.prepareStatement(sql);
+
+        comando.setString(1, email);
+
+        ResultSet resultado = comando.executeQuery();
+
+        boolean existe = resultado.next();
+
+        resultado.close();
+        comando.close();
+        conexao.close();
+
+        return existe;
     }
 }
 
