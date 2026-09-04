@@ -80,7 +80,7 @@ public class UsuarioAlergiaDAO {
     }
 
     public int deleteById(int id) throws SQLException{
-        String sql = "delete from usuario_alergia where usuario_alergia.id_usuario_alergia = ?";
+        String sql = "delete from usuario_alergia where id_usuario_alergia = ?";
 
         try (Connection cnn = new ConexaoBanco().conectar();
              PreparedStatement pstm = cnn.prepareStatement(sql)){
