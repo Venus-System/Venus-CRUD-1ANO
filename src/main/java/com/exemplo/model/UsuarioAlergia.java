@@ -1,26 +1,36 @@
-package com.exemplo.model;/
+package com.exemplo.model;
+
+import java.time.LocalDate;
 
 public class UsuarioAlergia {
 
-    private int idProdutoUsuario;
-    private String dtRegistro;
+    private int idUsuarioAlergia;
+    private LocalDate dtRegistro;
     private int grau;
     private int idUsuario;
     private int idAlergia;
 
-    public UsuarioAlergia(String dtRegistro, int grau, int idUsuario, int idProdutoUsuario, int idAlergia) {
+    public UsuarioAlergia(int idUsuarioAlergia, LocalDate dtRegistro, int grau, int idUsuario, int idAlergia) {
+        this.idUsuarioAlergia = idUsuarioAlergia;
         this.dtRegistro = dtRegistro;
         this.grau = grau;
         this.idUsuario = idUsuario;
-        this.idProdutoUsuario = idProdutoUsuario;
         this.idAlergia = idAlergia;
     }
 
-    public String getDtRegistro() {
+    public LocalDate getDtRegistro(){
         return dtRegistro;
     }
 
-    public void setDtRegistro(String dtRegistro) {
+    public int getIdProdutoUsuario() {
+        return idUsuarioAlergia;
+    }
+
+    public void setIdProdutoUsuario(int idProdutoUsuario) {
+        this.idUsuarioAlergia = idProdutoUsuario;
+    }
+
+    public void setDtRegistro(LocalDate dtRegistro) {
         this.dtRegistro = dtRegistro;
     }
 
@@ -38,14 +48,6 @@ public class UsuarioAlergia {
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
-    }
-
-    public int getIdProdutoUsuario() {
-        return idProdutoUsuario;
-    }
-
-    public void setIdProdutoUsuario(int idProdutoUsuario) {
-        this.idProdutoUsuario = idProdutoUsuario;
     }
 
     public int getIdAlergia() {

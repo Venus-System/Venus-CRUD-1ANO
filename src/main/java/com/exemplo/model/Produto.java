@@ -7,12 +7,12 @@ public class Produto {
     private String marca;
     private String categoria;
     private String descricao;
-    private String ehVegano;
-    private String ehCrueltyFree;
+    private Boolean ehVegano;
+    private Boolean ehCrueltyFree;
     private int pontuacao;
     private String listaIngredientes;
 
-    public Produto(int idProduto, String nome, String marca, String categoria, String descricao, String ehVegano, String ehCrueltyFree, int pontuacao, String listaIngredientes) {
+    public Produto(int idProduto, String nome, String marca, String categoria, String descricao, Boolean ehVegano, Boolean ehCrueltyFree, int pontuacao, String listaIngredientes) {
         this.idProduto = idProduto;
         this.nome = nome;
         this.marca = marca;
@@ -64,19 +64,19 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public String getEhVegano() {
+    public Boolean getEhVegano() {
         return ehVegano;
     }
 
-    public void setEhVegano(String ehVegano) {
+    public void setEhVegano(Boolean ehVegano) {
         this.ehVegano = ehVegano;
     }
 
-    public String getEhCrueltyFree() {
+    public Boolean getEhCrueltyFree() {
         return ehCrueltyFree;
     }
 
-    public void setEhCrueltyFree(String ehCrueltyFree) {
+    public void setEhCrueltyFree(Boolean ehCrueltyFree) {
         this.ehCrueltyFree = ehCrueltyFree;
     }
 

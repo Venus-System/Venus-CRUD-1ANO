@@ -8,22 +8,22 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ProdutoDAO {
-/*
-    public boolean cadastrarUsuario(Produto produto) throws SQLException {
-        String sql = "insert into produto (nome, marca, categoria, descricao, eh_vegano, eh_cruelty_free, pontuacao, lista_ingredientes) values (?,?,?,?,?,?)";
+    public boolean cadastrarProduto(Produto produto) throws SQLException{
+        String sql = "insert into produto (nome, marca, categoria, descricao, eh_vegano, eh_cruelty_free, pontuacao, lista_ingredientes) values (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection cnn= new ConexaoBanco().conectar();
              PreparedStatement pstmt = cnn.prepareStatement(sql)){
-            pstmt.setString(1, produto.getNome());
+            pstmt.setString(1,produto.getNome());
             pstmt.setString(2, produto.getMarca());
-            pstmt.setString(3, produto.getCategoria());
+            pstmt.setString(3,produto.getCategoria());
             pstmt.setString(4, produto.getDescricao());
-            pstmt.setString(5, produto.getEhVegano());
-            pstmt.setString(6,produto.getEhCrueltyFree());
-            pstmt.setInt(7,produto.getPontuacao());
+            pstmt.setBoolean(5, produto.getEhVegano());
+            pstmt.setBoolean(6, produto.getEhCrueltyFree());
+            pstmt.setInt(7, produto.getPontuacao());
             pstmt.setString(8, produto.getListaIngredientes());
 
             return pstmt.executeUpdate()>0;
@@ -39,26 +39,26 @@ public class ProdutoDAO {
              PreparedStatement pstmt = cnn.prepareStatement(sql);
              ResultSet rset = pstmt.executeQuery()) {
             while (rset.next()) {
-                Produto prod1 = new Produto(
-                        rset.getInt("id_produto as Id Produto"),
-                        rset.getString("nome as Nome Produto"),
-                        rset.getString("marca as Marca Produto"),
-                        rset.getString("categoria as Categoria Produto"),
-                        rset.getString("descricao as Descricao Produto"),
-                        rset.getString("eh_vegano as Eh Vegano"),
-                        rset.getString("eh_cruelty_free as Eh Cruelty Free"),
-                        rset.getInt("pontuacao as Pontuação Produto"),
-                        rset.getString("lista_ingredientes as Lista Ingredientes Produto")
+                Produto p1 = new Produto(
+                    rset.getInt("id_produto"),
+                    rset.getString("nome"),
+                    rset.getString("marca"),
+                    rset.getString("categoria"),
+                    rset.getString("descricao"),
+                    rset.getBoolean("eh_vegano"),
+                    rset.getBoolean("eh_cruelty_free"),
+                    rset.getInt("pontuacao"),
+                    rset.getString("lista_ingrediente")
 
-                        );
-                produto.add(prod1);
+                );
+                produto.add(p1);
             }
         } return produto;
 
     }
 
     public Produto readById(int id) throws SQLException{
-        String sql = "select * from produto where id_usuario =?";
+        String sql = "select * from produto where id_produto = ?";
         Produto produto = null;
         //ainda sem objeto
         try(Connection cnn = new ConexaoBanco().conectar();
@@ -70,24 +70,25 @@ public class ProdutoDAO {
                 //que permite a visualização das tabelas
                 if(rset.next()){
                     produto = new Produto(
-                            rset.getInt("id_produto as Id Produto"),
-                            rset.getString("nome as Nome Produto"),
-                            rset.getString("marca as Marca Produto"),
-                            rset.getString("categoria as Categoria Produto"),
-                            rset.getString("descricao as Descricao Produto"),
-                            rset.getString("eh_vegano as Eh Vegano"),
-                            rset.getString("eh_cruelty_free as Eh Cruelty Free"),
-                            rset.getInt("pontuacao as Pontuação Produto"),
-                            rset.getString("lista_ingredientes as Lista Ingredientes Produto")
-                            //retornará o usuario com o id que está sendo procurado.
+                            rset.getInt("id_produto"),
+                            rset.getString("nome"),
+                            rset.getString("marca"),
+                            rset.getString("categoria"),
+                            rset.getString("descricao"),
+                            rset.getBoolean("eh_vegano"),
+                            rset.getBoolean("eh_cruelty_free"),
+                            rset.getInt("pontuacao"),
+                            rset.getString("lista_ingrediente")
+
+                            //retornará o produto com o id que está sendo procurado.
                     );
                 }
             }
 
         } return produto;
     }
-    public int alterarValores(Produto produto) throws SQLException {
-        String sql = "update produto set nome = ?, marca = ?, categoria = ?, descricao = ?, eh_vegano = ?, eh_cruelty_free = ?, pontuacao = ?, lista_ingredientes = ?";
+    public int update (Produto produto) throws SQLException {
+        String sql = "update produto set nome =? , marca =?, categoria =?, descricao =?, eh_vegano =?, eh_cruelty_free =?, pontuacao =?, lista_ingredientes= ? where id_produto = ? ";
         try (Connection cnn = new ConexaoBanco().conectar();
              PreparedStatement pstmt = cnn.prepareStatement(sql)){
 
@@ -95,10 +96,10 @@ public class ProdutoDAO {
             pstmt.setString(2, produto.getMarca());
             pstmt.setString(3, produto.getCategoria());
             pstmt.setString(4, produto.getDescricao());
-            pstmt.setString(5, produto.getEhVegano());
-            pstmt.setString(5, produto.getEhCrueltyFree());
-            pstmt.setInt(6,produto.getPontuacao());
-            pstmt.setString(5, produto.getListaIngredientes());
+            pstmt.setBoolean(5, produto.getEhVegano());
+            pstmt.setBoolean(6, produto.getEhCrueltyFree());
+            pstmt.setInt(7, produto.getPontuacao());
+            pstmt.setString(8, produto.getListaIngredientes());
 
 
             return pstmt.executeUpdate();
@@ -115,6 +116,4 @@ public class ProdutoDAO {
 
         }
     }
-
- */
 }

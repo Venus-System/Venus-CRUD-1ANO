@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class AlergiaDAO {
 
     public boolean inserirAlergia(Alergia alergia) throws SQLException {
-        String sql= "insert into alergia (nome_alergia) values ?";
+        String sql= "insert into alergia (nome_alergia) values (?)";
 
         try (Connection cnn = new ConexaoBanco().conectar();
              PreparedStatement pstm = cnn.prepareStatement(sql)){
