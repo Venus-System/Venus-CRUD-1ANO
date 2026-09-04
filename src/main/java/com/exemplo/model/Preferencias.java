@@ -4,13 +4,13 @@ public class Preferencias {
 
     private int idPreferencias;
     private String faixaPreco;
-    private String prefereVegano;
+    private Boolean prefereVegano;
     private String restricoesDieta;
     private String categoriaPref;
     private String marcasFav;
     private int idUsuario;
 
-    public Preferencias(int idPreferencias, String faixaPreco, String prefereVegano, String restricoesDieta, String categoriaPref, String marcasFav, int idUsuario) {
+    public Preferencias(int idPreferencias, String faixaPreco, Boolean prefereVegano, String restricoesDieta, String categoriaPref, String marcasFav, int idUsuario) {
         this.idPreferencias = idPreferencias;
         this.faixaPreco = faixaPreco;
         this.prefereVegano = prefereVegano;
@@ -36,11 +36,11 @@ public class Preferencias {
         this.faixaPreco = faixaPreco;
     }
 
-    public String getPrefereVegano() {
+    public Boolean getPrefereVegano() {
         return prefereVegano;
     }
 
-    public void setPrefereVegano(String prefereVegano) {
+    public void setPrefereVegano(Boolean prefereVegano) {
         this.prefereVegano = prefereVegano;
     }
 
