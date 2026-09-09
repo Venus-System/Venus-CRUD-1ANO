@@ -17,7 +17,7 @@ public class Main {
         boolean sair = false;
 
         while (sair == false) {
-            System.out.println("\n===== MENU =====");
+            System.out.println("-\n===== MENU =====");
             System.out.println("1 - Adicionar usuário");
             System.out.println("2 - Sair");
             System.out.print("Escolha uma opção: ");
