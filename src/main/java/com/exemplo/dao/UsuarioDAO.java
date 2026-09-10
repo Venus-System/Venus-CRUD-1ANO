@@ -106,7 +106,6 @@ public class UsuarioDAO {
 
             pstmt.setInt(1,id);
             return pstmt.executeUpdate();
-
         }
     }
 }
