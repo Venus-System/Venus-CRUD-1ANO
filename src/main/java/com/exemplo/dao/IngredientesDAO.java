@@ -1,109 +1,86 @@
 package com.exemplo.dao;
 
 import com.exemplo.controller.ConexaoBanco;
-import com.exemplo.model.Usuario;
-
+import com.exemplo.model.Ingredientes;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class IngredientesDAO {
 
-    /*public boolean cadastrarIngrediente(Usuario usuario) throws SQLException {
-        String sql = "insert into usuario (nome_completo, genero, email, senha, dt_nascimento, telefone) values (?,?,?,?,?,?)";
+    public boolean cadastrarIngredientes(Ingredientes ingredientes) throws SQLException {
+        String sql = "insert into ingredientes(nivel_perigo, tipo, dt_atualizacao) values (?, ?, ?)";
 
-        try (Connection cnn= new ConexaoBanco().conectar();
-             PreparedStatement pstmt = cnn.prepareStatement(sql)){
-                pstmt.setInt(1, usuario.getIdUsuario());
-                pstmt.setString(2,usuario.getNomeCompleto());
-                pstmt.setString(3, usuario.getGenero());
-                pstmt.setString(4, usuario.getEmail());
-                pstmt.setString(5, usuario.getSenha());
-                pstmt.setObject(6, usuario.getDtNascimento());
-                pstmt.setLong(7,usuario.getTelefone());
-                pstmt.setObject(8, usuario.getDtCadastro());
-                return pstmt.executeUpdate()>0;
-            // o executeUpdate so vai retornar quantas linhas do banco foram alteradas, não retorna os dados inseridos.
+        try (Connection cnn = new ConexaoBanco().conectar();
+             PreparedStatement pstmt = cnn.prepareStatement(sql)) {
+            pstmt.setInt(1, ingredientes.getNivelPerigo());
+            pstmt.setString(2, ingredientes.getTipo());
+            pstmt.setString(3, ingredientes.getDtAtualizacao());
+            return pstmt.executeUpdate() > 0;
         }
     }
 
-
-    /*public ArrayList<Usuario> read() throws SQLException {
-        String sql = "select * from usuario order by id_usuario";
-        ArrayList<Usuario> usuario = new ArrayList<>();
+    public ArrayList<Ingredientes> read() throws SQLException {
+        String sql = "select * from ingredientes order by id_ingrediente";
+        ArrayList<Ingredientes> ingredientes = new ArrayList<>();
 
         try (Connection cnn = new ConexaoBanco().conectar();
              PreparedStatement pstmt = cnn.prepareStatement(sql);
              ResultSet rset = pstmt.executeQuery()) {
             while (rset.next()) {
-                Usuario user1 = new Usuario(
-                        rset.getInt("id_usuario"),
-                        rset.getString("nome"),
-                        rset.getString("genero"),
-                        rset.getString("senha"),
-                        rset.getString("email"),
-                        rset.getInt("telefone"),
-                        rset.getObject("dt_nascimento", LocalDate.class),
-                        rset.getObject("dt_cadastro", LocalDate.class)
+                Ingredientes ing1 = new Ingredientes(
+                        rset.getInt("id_ingrediente"),
+                        rset.getInt("nivel_perigo"),
+                        rset.getString("tipo"),
+                        rset.getString("dt_atualizacao")
                 );
-                usuario.add(user1);
+                ingredientes.add(ing1);
             }
-        } return usuario;
+        } return ingredientes;
 
     }
 
+    public Ingredientes readById(int id) throws SQLException {
+        String sql = "select * from ingredientes where id_ingrediente =?";
+        Ingredientes ingredientes = null;
 
+        try (Connection cnn = new ConexaoBanco().conectar();
+             PreparedStatement pstmt = cnn.prepareStatement(sql)) {
 
-    public Usuario readById(int id) throws SQLException{
-        String sql = "select * from usuario where id_usuario =?";
-        Usuario usuario = null;
-        //ainda sem objeto
-        try(Connection cnn = new ConexaoBanco().conectar();
-            PreparedStatement pstmt= cnn.prepareStatement(sql)){
+            pstmt.setInt(1, id);
 
-            pstmt.setInt(1,id);
-
-            try (ResultSet rset = pstmt.executeQuery()){
-                //que permite a visualização das tabelas
-                if(rset.next()){
-                    usuario = new Usuario(
-                            rset.getInt("id_usuario"),
-                            rset.getString("nome"),
-                            rset.getString("genero"),
-                            rset.getString("senha"),
-                            rset.getString("email"),
-                            rset.getLong("telefone"),
-                            rset.getObject("dt_nascimento", LocalDate.class),
-                            rset.getObject("dt_cadastro", LocalDate.class)
-
-                            //retornará o usuario com o id que está sendo procurado.
+            try (ResultSet rset = pstmt.executeQuery()) {
+                if (rset.next()) {
+                    ingredientes = new Ingredientes(
+                            rset.getInt("id_ingrediente"),
+                            rset.getInt("nivel_perigo"),
+                            rset.getString("tipo"),
+                            rset.getString("dt_atualizacao")
                     );
                 }
             }
 
-        } return usuario;
+        } return ingredientes;
     }
-    public int alterarValores(Usuario usuario) throws SQLException {
-        String sql = "update usuario set nome_completo = ?, genero = ?, email = ?, senha = ?, dt_nascimento = ?, telefone = ?";
-        try (Connection cnn = new ConexaoBanco().conectar();
-             PreparedStatement pstmt = cnn.prepareStatement(sql)){
 
-            pstmt.setString(1, usuario.getNomeCompleto());
-            pstmt.setString(2, usuario.getGenero());
-            pstmt.setString(3, usuario.getEmail());
-            pstmt.setString(4, usuario.getSenha());
-            pstmt.setObject(5, usuario.getDtNascimento());
-            pstmt.setLong(6,usuario.getTelefone());
+    public int alterarValores(Ingredientes ingredientes) throws SQLException {
+        String sql = "update ingredientes set nivel_perigo = ?, tipo = ?, dt_atualizacao = ?, dt_atualizacao = ?";
+        try (Connection cnn = new ConexaoBanco().conectar();
+             PreparedStatement pstmt = cnn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, ingredientes.getNivelPerigo());
+            pstmt.setString(2, ingredientes.getTipo());
+            pstmt.setString(3, ingredientes.getDtAtualizacao());
+            pstmt.setString(3, ingredientes.getDtAtualizacao());
 
             return pstmt.executeUpdate();
         }
     }
 
     public int deleteById(int id) throws SQLException {
-        String sql = "delete from usuario where id_usuario = ?";
+        String sql = "delete from ingredientes where id_ingrediente = ?";
         try (Connection cnn = new ConexaoBanco().conectar();
              PreparedStatement pstmt = cnn.prepareStatement(sql)) {
 
@@ -112,6 +89,4 @@ public class IngredientesDAO {
 
         }
     }
-
-     */
 }
