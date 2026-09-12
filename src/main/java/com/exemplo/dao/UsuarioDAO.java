@@ -81,6 +81,7 @@ public class UsuarioDAO {
 
         } return usuario;
     }
+<<<<<<< HEAD
 
     public Usuario readByEmail(String email) throws SQLException{
         String sql = "select * from usuario where email =?";
@@ -123,8 +124,12 @@ public class UsuarioDAO {
             pstmt.setString(4, usuario.getSenha());
             pstmt.setString(5,usuario.getTelefone());
             pstmt.setObject(6, usuario.getDtNascimento());
+<<<<<<< HEAD
             pstmt.setInt(7, usuario.getIdUsuario());
 
+=======
+            pstmt.setObject(6, usuario.getDtNascimento());
+>>>>>>> origin/Correcao_erros
 
             return pstmt.executeUpdate();
         }
@@ -138,6 +143,25 @@ public class UsuarioDAO {
             pstmt.setInt(1,id);
             return pstmt.executeUpdate();
         }
+    }
+
+    public boolean existeEmail(String email) throws SQLException {
+        Connection conexao = new ConexaoBanco().conectar();
+
+        String sql = "SELECT 1 FROM usuario WHERE email = ?";
+        PreparedStatement comando = conexao.prepareStatement(sql);
+
+        comando.setString(1, email);
+
+        ResultSet resultado = comando.executeQuery();
+
+        boolean existe = resultado.next();
+
+        resultado.close();
+        comando.close();
+        conexao.close();
+
+        return existe;
     }
 }
 

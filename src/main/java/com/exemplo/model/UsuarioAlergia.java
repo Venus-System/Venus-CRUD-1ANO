@@ -1,6 +1,10 @@
 package com.exemplo.model;
 
+<<<<<<< HEAD
 import java.time.LocalDate;
+=======
+
+>>>>>>> origin/Correcao_erros
 
 public class UsuarioAlergia {
 

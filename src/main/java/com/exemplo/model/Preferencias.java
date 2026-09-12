@@ -1,4 +1,10 @@
 package com.exemplo.model;
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> origin/Correcao_erros
 
 public class Preferencias {
 
