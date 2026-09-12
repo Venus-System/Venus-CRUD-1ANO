@@ -81,6 +81,37 @@ public class UsuarioDAO {
 
         } return usuario;
     }
+
+    public Usuario readByEmail(String email) throws SQLException{
+        String sql = "select * from usuario where email =?";
+        Usuario usuario = null;
+        //ainda sem objeto
+        try(Connection cnn = new ConexaoBanco().conectar();
+            PreparedStatement pstmt= cnn.prepareStatement(sql)){
+
+            pstmt.setString(1,email);
+
+            try (ResultSet rset = pstmt.executeQuery()){
+                //que permite a visualização das tabelas
+                if(rset.next()){
+                    usuario = new Usuario(
+                            rset.getInt("id_usuario"),
+                            rset.getString("nome_completo"),
+                            rset.getString("genero"),
+                            rset.getString("email"),
+                            rset.getString("senha"),
+                            rset.getString("telefone"),
+                            rset.getObject("dt_nascimento", LocalDate.class),
+                            rset.getObject("dt_cadastro", LocalDate.class)
+
+                            //retornará o usuario com o email que está sendo procurado.
+                    );
+                }
+            }
+
+        } return usuario;
+    }
+
     public int update (Usuario usuario) throws SQLException {
         String sql = "update usuario set nome_completo = ?, genero = ?, email = ?, senha = ?, telefone = ?, dt_nascimento = ? where id_usuario = ? ";
         try (Connection cnn = new ConexaoBanco().conectar();
