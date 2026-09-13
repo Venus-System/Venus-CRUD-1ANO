@@ -87,6 +87,69 @@ public class ProdutoDAO {
 
         } return produto;
     }
+
+    public Produto readByName(String nome) throws SQLException{
+        String sql = "select * from produto where nome = ?";
+        Produto produto = null;
+        //ainda sem objeto
+        try(Connection cnn = new ConexaoBanco().conectar();
+            PreparedStatement pstmt= cnn.prepareStatement(sql)){
+
+            pstmt.setString(1,"%"+nome+"%");
+
+            try (ResultSet rset = pstmt.executeQuery()){
+                //que permite a visualização das tabelas
+                if(rset.next()){
+                    produto = new Produto(
+                            rset.getInt("id_produto"),
+                            rset.getString("nome"),
+                            rset.getString("marca"),
+                            rset.getString("categoria"),
+                            rset.getString("descricao"),
+                            rset.getBoolean("eh_vegano"),
+                            rset.getBoolean("eh_cruelty_free"),
+                            rset.getInt("pontuacao"),
+                            rset.getString("lista_ingrediente")
+
+                            //retornará os produtos com o nome que está sendo procurado.
+                    );
+                }
+            }
+
+        } return produto;
+    }
+
+    public Produto readByBrand(String marca) throws SQLException{
+        String sql = "select * from produto where marca = ?";
+        Produto produto = null;
+        //ainda sem objeto
+        try(Connection cnn = new ConexaoBanco().conectar();
+            PreparedStatement pstmt= cnn.prepareStatement(sql)){
+
+            pstmt.setString(1,"%"+marca+"%");
+
+            try (ResultSet rset = pstmt.executeQuery()){
+                //que permite a visualização das tabelas
+                if(rset.next()){
+                    produto = new Produto(
+                            rset.getInt("id_produto"),
+                            rset.getString("nome"),
+                            rset.getString("marca"),
+                            rset.getString("categoria"),
+                            rset.getString("descricao"),
+                            rset.getBoolean("eh_vegano"),
+                            rset.getBoolean("eh_cruelty_free"),
+                            rset.getInt("pontuacao"),
+                            rset.getString("lista_ingrediente")
+
+                            //retornará os produtos com a marca que está sendo procurada.
+                    );
+                }
+            }
+
+        } return produto;
+    }
+
     public int update (Produto produto) throws SQLException {
         String sql = "update produto set nome =? , marca =?, categoria =?, descricao =?, eh_vegano =?, eh_cruelty_free =?, pontuacao =?, lista_ingredientes= ? where id_produto = ? ";
         try (Connection cnn = new ConexaoBanco().conectar();
