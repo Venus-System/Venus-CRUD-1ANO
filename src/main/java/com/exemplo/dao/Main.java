@@ -10,18 +10,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         Scanner scanner = new Scanner(System.in);
         DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-<<<<<<< HEAD
         Usuario usuario = new Usuario ("Janderson Martins", "Masculino", "jdhfhd" ,  "1234","551198976", LocalDate.of(2000,6,7), LocalDate.of(2026,8,27));
         UsuarioDAO dao = new UsuarioDAO();
         System.out.println();
         dao.cadastrarUsuario(usuario);
-=======
+
         boolean sair = false;
->>>>>>> origin/Correcao_erros
 
         while (sair == false) {
             System.out.println("-\n===== MENU =====");
@@ -87,8 +85,8 @@ public class Main {
                         }
                     }
 
-                    Usuario usuario = new Usuario(nomeCompleto, genero, email, senha, telefone, dtNascimento, LocalDate.now());
-                    UsuarioDAO dao = new UsuarioDAO();
+                    Usuario usuario1 = new Usuario(nomeCompleto, genero, email, senha, telefone, dtNascimento, LocalDate.now());
+                    UsuarioDAO dao1 = new UsuarioDAO();
 
                     if (dao.existeEmail(usuario.getEmail())) {
                         System.out.println("Já existe um usuário cadastrado com esse email.");
