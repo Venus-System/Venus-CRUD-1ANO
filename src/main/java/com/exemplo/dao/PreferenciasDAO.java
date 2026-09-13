@@ -80,6 +80,65 @@ public class PreferenciasDAO {
 
         } return preferencias;
     }
+
+    public Preferencias readByPrice(String faixaPreco) throws SQLException{
+        String sql = "select * from preferencias where faixa_preco like ?";
+        Preferencias preferencias = null;
+        //ainda sem objeto
+        try(Connection cnn = new ConexaoBanco().conectar();
+            PreparedStatement pstmt= cnn.prepareStatement(sql)){
+
+            pstmt.setString(1,"%"+faixaPreco+"%");
+
+            try (ResultSet rset = pstmt.executeQuery()){
+                //que permite a visualização das tabelas
+                if(rset.next()){
+                    preferencias = new Preferencias(
+                            rset.getInt("id_preferencias"),
+                            rset.getString("faixa_preco"),
+                            rset.getBoolean("prefere_vegano"),
+                            rset.getString("restricoes_dieta"),
+                            rset.getString("categoria_pref"),
+                            rset.getString("marcas_fav"),
+                            rset.getInt("id_usuario")
+
+                            //retornará as preferencias com a faixa que está sendo procurada.
+                    );
+                }
+            }
+
+        } return preferencias;
+    }
+
+    public Preferencias readByBrand(String marca) throws SQLException{
+        String sql = "select * from preferencias where preferencias.marcas_fav like ?";
+        Preferencias preferencias = null;
+        //ainda sem objeto
+        try(Connection cnn = new ConexaoBanco().conectar();
+            PreparedStatement pstmt= cnn.prepareStatement(sql)){
+
+            pstmt.setString(1,"%"+marca+"%");
+
+            try (ResultSet rset = pstmt.executeQuery()){
+                //que permite a visualização das tabelas
+                if(rset.next()){
+                    preferencias = new Preferencias(
+                            rset.getInt("id_preferencias"),
+                            rset.getString("faixa_preco"),
+                            rset.getBoolean("prefere_vegano"),
+                            rset.getString("restricoes_dieta"),
+                            rset.getString("categoria_pref"),
+                            rset.getString("marcas_fav"),
+                            rset.getInt("id_usuario")
+
+                            //retornará as preferencias com a marca que está sendo procurada.
+                    );
+                }
+            }
+
+        } return preferencias;
+    }
+
     public int update (Preferencias preferencias) throws SQLException {
         String sql = "update preferencias set faixa_preco =?, prefere_vegano =?, restricoes_dieta =?, categorias_pref =?, marcas_fav =?, id_usuario =? where id_preferencias = ? ";
         try (Connection cnn = new ConexaoBanco().conectar();
