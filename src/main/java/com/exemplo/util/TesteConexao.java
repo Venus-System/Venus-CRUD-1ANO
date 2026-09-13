@@ -1,4 +1,4 @@
-package com.exemplo.controller;
+package com.exemplo.util;
 
 import java.sql.Connection;
 

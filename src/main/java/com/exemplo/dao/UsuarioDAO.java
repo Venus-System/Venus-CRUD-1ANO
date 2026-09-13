@@ -1,6 +1,6 @@
 package com.exemplo.dao;
 
-import com.exemplo.controller.ConexaoBanco;
+import com.exemplo.util.ConexaoBanco;
 import com.exemplo.model.Usuario;
 import java.time.LocalDate;
 import java.sql.Connection;

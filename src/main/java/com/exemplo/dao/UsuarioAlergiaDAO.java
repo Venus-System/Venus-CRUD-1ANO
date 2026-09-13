@@ -1,10 +1,7 @@
 package com.exemplo.dao;
 
-import com.exemplo.controller.ConexaoBanco;
-import com.exemplo.model.Alergia;
-import com.exemplo.model.Usuario;
+import com.exemplo.util.ConexaoBanco;
 import com.exemplo.model.UsuarioAlergia;
-import org.postgresql.core.SqlCommand;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

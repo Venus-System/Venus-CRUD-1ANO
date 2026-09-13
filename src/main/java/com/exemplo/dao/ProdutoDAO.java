@@ -1,14 +1,12 @@
 package com.exemplo.dao;
 
-import com.exemplo.controller.ConexaoBanco;
+import com.exemplo.util.ConexaoBanco;
 import com.exemplo.model.Produto;
-import com.exemplo.model.Usuario;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ProdutoDAO {
