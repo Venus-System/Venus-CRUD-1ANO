@@ -54,6 +54,23 @@ public class AlergiaDAO {
 
     }
 
+    public Alergia readByName(String nome) throws SQLException{
+        String sql= "select*from alergia where nome_alergia like ?";
+        Alergia alergia = null;
+
+        try (Connection cnn = new ConexaoBanco().conectar();
+             PreparedStatement pstm = cnn.prepareStatement(sql)){
+            pstm.setString(1,"%"+nome+"%");
+
+            try (ResultSet rset = pstm.executeQuery()) {
+                if(rset.next()){
+                    Alergia al1 = new Alergia(rset.getInt("id_alergia"), rset.getString("nome_alergia"));
+                }
+            }
+        }return alergia;
+
+    }
+
     public int update(Alergia alergia) throws SQLException{
         String sql = "update alergia set nome_alergia = ? where id_alergia = ?";
 
