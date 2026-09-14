@@ -172,7 +172,7 @@ public class UsuarioDAO {
     public boolean existeEmail(String email) throws SQLException {
         Connection conexao = new ConexaoBanco().conectar();
 
-        String sql = "SELECT 1 FROM usuario WHERE email = ?";
+        String sql = "select 1 FROM usuario WHERE email = ?";
         PreparedStatement comando = conexao.prepareStatement(sql);
 
         comando.setString(1, email);
