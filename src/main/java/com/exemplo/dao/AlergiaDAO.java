@@ -30,9 +30,7 @@ public class AlergiaDAO {
              PreparedStatement pstmt = cnn.prepareStatement(sql);
              ResultSet rset = pstmt.executeQuery()) {
             while (rset.next()){
-                Alergia al1 = new Alergia(rset.getInt("idAlergia"), rset.getString("nomeAlergia"));
-                alergia.add(al1);
-            }
+                Alergia al1 = new Alergia(rset.getInt("id_alergia"), rset.getString("nome_alergia"));            }
         } return alergia;
     }
 
