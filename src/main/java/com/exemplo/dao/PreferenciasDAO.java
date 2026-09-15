@@ -69,7 +69,7 @@ public class PreferenciasDAO {
                             rset.getString("faixa_preco"),
                             rset.getBoolean("prefere_vegano"),
                             rset.getString("restricoes_dieta"),
-                            rset.getString("categoria_pref"),
+                            rset.getString("categorias_pref"),
                             rset.getString("marcas_fav"),
                             rset.getInt("id_usuario")
 
@@ -98,7 +98,7 @@ public class PreferenciasDAO {
                             rset.getString("faixa_preco"),
                             rset.getBoolean("prefere_vegano"),
                             rset.getString("restricoes_dieta"),
-                            rset.getString("categoria_pref"),
+                            rset.getString("categorias_pref"),
                             rset.getString("marcas_fav"),
                             rset.getInt("id_usuario")
 
@@ -127,7 +127,7 @@ public class PreferenciasDAO {
                             rset.getString("faixa_preco"),
                             rset.getBoolean("prefere_vegano"),
                             rset.getString("restricoes_dieta"),
-                            rset.getString("categoria_pref"),
+                            rset.getString("categorias_pref"),
                             rset.getString("marcas_fav"),
                             rset.getInt("id_usuario")
 

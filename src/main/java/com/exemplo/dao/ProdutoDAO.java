@@ -23,7 +23,6 @@ public class ProdutoDAO {
             pstmt.setBoolean(6, produto.getEhCrueltyFree());
             pstmt.setInt(7, produto.getPontuacao());
             pstmt.setString(8, produto.getListaIngredientes());
-            pstmt.setInt(9, produto.getIdProduto());
 
             return pstmt.executeUpdate()>0;
             // o executeUpdate so vai retornar quantas linhas do banco foram alteradas, não retorna os dados inseridos.
@@ -158,6 +157,7 @@ public class ProdutoDAO {
             pstmt.setBoolean(6, produto.getEhCrueltyFree());
             pstmt.setInt(7, produto.getPontuacao());
             pstmt.setString(8, produto.getListaIngredientes());
+            pstmt.setInt(9, produto.getIdProduto());
 
 
             return pstmt.executeUpdate();
