@@ -14,10 +14,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        Usuario usuario = new Usuario ("Janderson Martins", "Masculino", "jdhfhd" ,  "1234","551198976", LocalDate.of(2000,6,7), LocalDate.of(2026,8,27));
         UsuarioDAO dao = new UsuarioDAO();
-        System.out.println();
-        dao.cadastrarUsuario(usuario);
 
         boolean sair = false;
 
@@ -86,12 +83,11 @@ public class Main {
                     }
 
                     Usuario usuario1 = new Usuario(nomeCompleto, genero, email, senha, telefone, dtNascimento, LocalDate.now());
-                    UsuarioDAO dao1 = new UsuarioDAO();
 
-                    if (dao.existeEmail(usuario.getEmail())) {
+                    if (dao.existeEmail(usuario1.getEmail())) {
                         System.out.println("Já existe um usuário cadastrado com esse email.");
                     } else {
-                        boolean cadastrado = dao.cadastrarUsuario(usuario);
+                        boolean cadastrado = dao.cadastrarUsuario(usuario1);
                         if (cadastrado) {
                             System.out.println("Usuário cadastrado com sucesso!");
                         } else {

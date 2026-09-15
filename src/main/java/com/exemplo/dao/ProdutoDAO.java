@@ -46,7 +46,7 @@ public class ProdutoDAO {
                     rset.getBoolean("eh_vegano"),
                     rset.getBoolean("eh_cruelty_free"),
                     rset.getInt("pontuacao"),
-                    rset.getString("lista_ingrediente")
+                    rset.getString("lista_ingredientes")
 
                 );
                 produto.add(p1);
@@ -106,7 +106,7 @@ public class ProdutoDAO {
                             rset.getBoolean("eh_vegano"),
                             rset.getBoolean("eh_cruelty_free"),
                             rset.getInt("pontuacao"),
-                            rset.getString("lista_ingrediente")
+                            rset.getString("lista_ingredientes")
 
                     );
                 }
