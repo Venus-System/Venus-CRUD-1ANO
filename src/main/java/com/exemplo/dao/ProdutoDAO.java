@@ -23,6 +23,7 @@ public class ProdutoDAO {
             pstmt.setBoolean(6, produto.getEhCrueltyFree());
             pstmt.setInt(7, produto.getPontuacao());
             pstmt.setString(8, produto.getListaIngredientes());
+            pstmt.setInt(9, produto.getIdProduto());
 
             return pstmt.executeUpdate()>0;
             // o executeUpdate so vai retornar quantas linhas do banco foram alteradas, não retorna os dados inseridos.
@@ -76,9 +77,8 @@ public class ProdutoDAO {
                             rset.getBoolean("eh_vegano"),
                             rset.getBoolean("eh_cruelty_free"),
                             rset.getInt("pontuacao"),
-                            rset.getString("lista_ingrediente")
+                            rset.getString("lista_ingredientes")
 
-                            //retornará o produto com o id que está sendo procurado.
                     );
                 }
             }
@@ -109,7 +109,6 @@ public class ProdutoDAO {
                             rset.getInt("pontuacao"),
                             rset.getString("lista_ingrediente")
 
-                            //retornará os produtos com o nome que está sendo procurado.
                     );
                 }
             }
@@ -138,9 +137,7 @@ public class ProdutoDAO {
                             rset.getBoolean("eh_vegano"),
                             rset.getBoolean("eh_cruelty_free"),
                             rset.getInt("pontuacao"),
-                            rset.getString("lista_ingrediente")
-
-                            //retornará os produtos com a marca que está sendo procurada.
+                            rset.getString("lista_ingredientes")
                     );
                 }
             }

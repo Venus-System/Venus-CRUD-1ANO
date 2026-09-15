@@ -92,11 +92,12 @@ public class UsuarioAlergiaDAO {
         String sql = "update usuario_alergia set dt_registro=?, grau =?, id_usuario=? , id_alergia =? where id_usuario_alergia=?";
         try (Connection cnn = ConexaoBanco.conectar();
             PreparedStatement pstmt = cnn.prepareStatement(sql)){
+
             pstmt.setObject(1, usuarioAlergia.getDtRegistro());
-            pstmt.setInt(2,usuarioAlergia.getGrau());
-            pstmt.setInt(4, usuarioAlergia.getIdUsuario());
-            pstmt.setInt(5,usuarioAlergia.getIdAlergia());
-            pstmt.setInt(6, usuarioAlergia.getIdUsuarioAlergia());
+            pstmt.setInt(2, usuarioAlergia.getGrau());
+            pstmt.setInt(3, usuarioAlergia.getIdUsuario());
+            pstmt.setInt(4, usuarioAlergia.getIdAlergia());
+            pstmt.setInt(5, usuarioAlergia.getIdUsuarioAlergia());
 
             return pstmt.executeUpdate();
 

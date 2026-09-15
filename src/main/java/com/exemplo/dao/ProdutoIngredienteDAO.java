@@ -63,13 +63,14 @@ public class ProdutoIngredienteDAO {
     }
 
     public int alterarValores(ProdutoIngrediente produtoIngrediente) throws SQLException {
-        String sql = "update produto_ingrediente set id_ingrediente = ?, id_produto = ?, id_produto = ?";
+        String sql = "update produto_ingrediente set id_ingrediente = ?, id_produto = ? where id_produto_ingrediente = ?";
+
         try (Connection cnn = new ConexaoBanco().conectar();
              PreparedStatement pstmt = cnn.prepareStatement(sql)) {
 
             pstmt.setInt(1, produtoIngrediente.getidIngrediente());
             pstmt.setInt(2, produtoIngrediente.getIdProduto());
-            pstmt.setInt(2, produtoIngrediente.getIdProduto());
+            pstmt.setInt(3, produtoIngrediente.getIdProdutoIngrediente());
 
             return pstmt.executeUpdate();
         }

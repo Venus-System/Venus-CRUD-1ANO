@@ -66,14 +66,14 @@ public class IngredientesDAO {
     }
 
     public int alterarValores(Ingredientes ingredientes) throws SQLException {
-        String sql = "update ingredientes set nivel_perigo = ?, tipo = ?, dt_atualizacao = ?, dt_atualizacao = ?";
+        String sql = "update ingredientes set nivel_perigo = ?, tipo = ?, dt_atualizacao = ? where id_ingrediente = ?";
         try (Connection cnn = new ConexaoBanco().conectar();
              PreparedStatement pstmt = cnn.prepareStatement(sql)) {
 
             pstmt.setInt(1, ingredientes.getNivelPerigo());
             pstmt.setString(2, ingredientes.getTipo());
             pstmt.setString(3, ingredientes.getDtAtualizacao());
-            pstmt.setString(3, ingredientes.getDtAtualizacao());
+            pstmt.setInt(4, ingredientes.getIdIngrediente());
 
             return pstmt.executeUpdate();
         }
