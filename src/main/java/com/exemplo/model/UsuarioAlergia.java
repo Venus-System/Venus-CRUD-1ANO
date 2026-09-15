@@ -18,16 +18,16 @@ public class UsuarioAlergia {
         this.idAlergia = idAlergia;
     }
 
-    public LocalDate getDtRegistro(){
-        return dtRegistro;
-    }
-
-    public int getIdProdutoUsuario() {
+    public int getIdUsuarioAlergia() {
         return idUsuarioAlergia;
     }
 
-    public void setIdProdutoUsuario(int idProdutoUsuario) {
-        this.idUsuarioAlergia = idProdutoUsuario;
+    public void setIdUsuarioAlergia(int idUsuarioAlergia) {
+        this.idUsuarioAlergia = idUsuarioAlergia;
+    }
+
+    public LocalDate getDtRegistro() {
+        return dtRegistro;
     }
 
     public void setDtRegistro(LocalDate dtRegistro) {
@@ -60,7 +60,7 @@ public class UsuarioAlergia {
 
     @Override
     public String toString() {
-        return "Id ProdutoUsuário: " + getIdProdutoUsuario() + "\n" +
+        return "Id Usuário Alergia: " + getIdUsuarioAlergia() + "\n" +
                 "Data Registro: " + getDtRegistro() + "\n" +
                 "Grau: " + getGrau() + "\n" +
                 "Id Usuário: " + getIdUsuario() + "\n" +

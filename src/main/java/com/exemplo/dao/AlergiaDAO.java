@@ -46,7 +46,7 @@ public class AlergiaDAO {
 
             try (ResultSet rset = pstm.executeQuery()) {
                 if(rset.next()){
-                    Alergia al1 = new Alergia(rset.getInt("id_alergia"), rset.getString("nome_alergia"));
+                    alergia = new Alergia(rset.getInt("id_alergia"), rset.getString("nome_alergia"));
                 }
             }
         }return alergia;
@@ -63,7 +63,7 @@ public class AlergiaDAO {
 
             try (ResultSet rset = pstm.executeQuery()) {
                 if(rset.next()){
-                    Alergia al1 = new Alergia(rset.getInt("id_alergia"), rset.getString("nome_alergia"));
+                    alergia = new Alergia(rset.getInt("id_alergia"), rset.getString("nome_alergia"));
                 }
             }
         }return alergia;

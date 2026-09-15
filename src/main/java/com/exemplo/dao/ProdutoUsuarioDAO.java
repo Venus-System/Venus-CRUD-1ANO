@@ -34,7 +34,7 @@ public class ProdutoUsuarioDAO {
                 ProdutoUsuario prdUs = new ProdutoUsuario (
                     rset.getInt("id_produto_usuario"),
                     rset.getInt("id_produto"),
-                    rset.getInt("dt_usuario"));
+                    rset.getInt("id_usuario"));
                 produtoUsuario.add(prdUs);
             }
         } return produtoUsuario;
@@ -50,7 +50,7 @@ public class ProdutoUsuarioDAO {
 
             try (ResultSet rset = pstm.executeQuery()) {
                 if(rset.next()){
-                    ProdutoUsuario prdUs1 = new ProdutoUsuario(
+                    produtoUsuario = new ProdutoUsuario(
                             rset.getInt("id_produto_usuario"),
                             rset.getInt("id_produto"),
                             rset.getInt("id_usuario"));
@@ -60,16 +60,17 @@ public class ProdutoUsuarioDAO {
 
     }
 
-    public int update(ProdutoUsuario produtoUsuario) throws SQLException{
-        String sql = "update produto_usuario set id_produto = ?, id_usuario = ? where id_produto_usuario= ?";
-
+    public int update (ProdutoUsuario produtoUsuario) throws SQLException {
+        String sql = "update produto_usuario set id_produto = ?, id_usuario =?  where id_produto_usuario = ? ";
         try (Connection cnn = new ConexaoBanco().conectar();
-             PreparedStatement pstm = cnn.prepareStatement(sql)){
+             PreparedStatement pstmt = cnn.prepareStatement(sql)){
 
-            pstm.setInt(1, produtoUsuario.getIdProduto());
-            pstm.setInt(2, produtoUsuario.getIdUsuario());
+            pstmt.setInt(1,produtoUsuario.getIdProduto());
+            pstmt.setInt(2,produtoUsuario.getIdUsuario());
+            pstmt.setInt(3,produtoUsuario.getIdProdutoUsuario());
 
-            return pstm.executeUpdate();
+
+            return pstmt.executeUpdate();
         }
     }
 

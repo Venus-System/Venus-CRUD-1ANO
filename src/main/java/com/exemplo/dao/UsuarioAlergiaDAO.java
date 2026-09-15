@@ -88,6 +88,21 @@ public class UsuarioAlergiaDAO {
 
     }
 
+    public int update (UsuarioAlergia usuarioAlergia) throws SQLException{
+        String sql = "update usuario_alergia set dt_registro=?, grau =?, id_usuario=? , id_alergia =? where id_usuario_alergia=?";
+        try (Connection cnn = ConexaoBanco.conectar();
+            PreparedStatement pstmt = cnn.prepareStatement(sql)){
+            pstmt.setObject(1, usuarioAlergia.getDtRegistro());
+            pstmt.setInt(2,usuarioAlergia.getGrau());
+            pstmt.setInt(4, usuarioAlergia.getIdUsuario());
+            pstmt.setInt(5,usuarioAlergia.getIdAlergia());
+            pstmt.setInt(6, usuarioAlergia.getIdUsuarioAlergia());
+
+            return pstmt.executeUpdate();
+
+        }
+    }
+
     public int deleteById(int id) throws SQLException{
         String sql = "delete from usuario_alergia where id_usuario_alergia = ?";
 

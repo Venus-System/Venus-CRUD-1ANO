@@ -12,7 +12,8 @@ public class ConexaoBanco {
     public static final String DB_PASSWORD;
 
     private static boolean isNullOrEmpty(String valor){
-        return valor == null;
+
+        return valor == null  || valor.isEmpty();
     }
 
     static {

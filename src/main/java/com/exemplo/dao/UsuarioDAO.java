@@ -28,6 +28,16 @@ public class UsuarioDAO {
         }
     }
 
+
+
+
+
+
+
+
+
+
+
     public ArrayList<Usuario> read() throws SQLException {
         String sql = "select * from usuario order by id_usuario";
         ArrayList<Usuario> usuario = new ArrayList<>();

@@ -81,6 +81,7 @@ public class AnaliseDAO {
             pstmt.setString( 2, analise.getResumoResultado());
             pstmt.setInt(3, analise.getPontuacao());
             pstmt.setInt(4, analise.getIdUsuario());
+            pstmt.setInt(5, analise.getIdAnalise());
 
             return pstmt.executeUpdate();
         }

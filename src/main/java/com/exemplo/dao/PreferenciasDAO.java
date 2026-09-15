@@ -150,6 +150,7 @@ public class PreferenciasDAO {
             pstmt.setString(4, preferencias.getCategoriaPref());
             pstmt.setString(5, preferencias.getMarcasFav());
             pstmt.setInt(6, preferencias.getIdUsuario());
+            pstmt.setInt(7, preferencias.getIdPreferencias());
 
             return pstmt.executeUpdate();
         }
